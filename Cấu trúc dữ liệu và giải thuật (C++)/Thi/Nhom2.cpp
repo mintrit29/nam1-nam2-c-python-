@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 using namespace std;
-//test
 // Cau1a
 struct BOOK
 {
