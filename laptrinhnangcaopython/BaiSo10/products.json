@@ -1,0 +1,182 @@
+[
+    {
+        "id": 1,
+        "title": "iPhone 9",
+        "price": 549,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/1/thumbnail.jpg"
+    },
+    {
+        "id": 2,
+        "title": "iPhone X",
+        "price": 899,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/2/thumbnail.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Samsung Universe 9",
+        "price": 1249,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/3/thumbnail.jpg"
+    },
+    {
+        "id": 4,
+        "title": "OPPOF19",
+        "price": 280,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/4/thumbnail.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Huawei P30",
+        "price": 499,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/5/thumbnail.jpg"
+    },
+    {
+        "id": 6,
+        "title": "MacBook Pro",
+        "price": 1749,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/6/thumbnail.png"
+    },
+    {
+        "id": 7,
+        "title": "Samsung Galaxy Book",
+        "price": 1499,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/7/thumbnail.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Microsoft Surface Laptop 4",
+        "price": 1499,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/8/thumbnail.jpg"
+    },
+    {
+        "id": 9,
+        "title": "Infinix INBOOK",
+        "price": 1099,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/9/thumbnail.jpg"
+    },
+    {
+        "id": 10,
+        "title": "HP Pavilion 15-DK1056WM",
+        "price": 1099,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/10/thumbnail.jpeg"
+    },
+    {
+        "id": 11,
+        "title": "perfume Oil",
+        "price": 13,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/11/thumbnail.jpg"
+    },
+    {
+        "id": 12,
+        "title": "Brown Perfume",
+        "price": 40,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/12/thumbnail.jpg"
+    },
+    {
+        "id": 13,
+        "title": "Fog Scent Xpressio Perfume",
+        "price": 13,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/13/thumbnail.webp"
+    },
+    {
+        "id": 14,
+        "title": "Non-Alcoholic Concentrated Perfume Oil",
+        "price": 120,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/14/thumbnail.jpg"
+    },
+    {
+        "id": 15,
+        "title": "Eau De Perfume Spray",
+        "price": 30,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/15/thumbnail.jpg"
+    },
+    {
+        "id": 16,
+        "title": "Hyaluronic Acid Serum",
+        "price": 19,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/16/thumbnail.jpg"
+    },
+    {
+        "id": 17,
+        "title": "Tree Oil 30ml",
+        "price": 12,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/17/thumbnail.jpg"
+    },
+    {
+        "id": 18,
+        "title": "Oil Free Moisturizer 100ml",
+        "price": 40,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/18/thumbnail.jpg"
+    },
+    {
+        "id": 19,
+        "title": "Skin Beauty Serum.",
+        "price": 46,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/19/thumbnail.jpg"
+    },
+    {
+        "id": 20,
+        "title": "Freckle Treatment Cream- 15gm",
+        "price": 70,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/20/thumbnail.jpg"
+    },
+    {
+        "id": 21,
+        "title": "- Daal Masoor 500 grams",
+        "price": 20,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/21/thumbnail.png"
+    },
+    {
+        "id": 22,
+        "title": "Elbow Macaroni - 400 gm",
+        "price": 14,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/22/thumbnail.jpg"
+    },
+    {
+        "id": 23,
+        "title": "Orange Essence Food Flavou",
+        "price": 14,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/23/thumbnail.jpg"
+    },
+    {
+        "id": 24,
+        "title": "cereals muesli fruit nuts",
+        "price": 46,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/24/thumbnail.jpg"
+    },
+    {
+        "id": 25,
+        "title": "Gulab Powder 50 Gram",
+        "price": 70,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/25/thumbnail.jpg"
+    },
+    {
+        "id": 26,
+        "title": "Plant Hanger For Home",
+        "price": 41,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/26/thumbnail.jpg"
+    },
+    {
+        "id": 27,
+        "title": "Flying Wooden Bird",
+        "price": 51,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/27/thumbnail.webp"
+    },
+    {
+        "id": 28,
+        "title": "3D Embellishment Art Lamp",
+        "price": 20,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/28/thumbnail.jpg"
+    },
+    {
+        "id": 29,
+        "title": "Handcraft Chinese style",
+        "price": 60,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/29/thumbnail.webp"
+    },
+    {
+        "id": 30,
+        "title": "Key Holder",
+        "price": 30,
+        "thumbnail": "https://cdn.dummyjson.com/product-images/30/thumbnail.jpg"
+    }
+]

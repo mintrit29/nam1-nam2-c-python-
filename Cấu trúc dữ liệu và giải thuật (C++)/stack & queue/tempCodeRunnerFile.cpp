@@ -1,0 +1,1 @@
+cout << "Emty\n";
