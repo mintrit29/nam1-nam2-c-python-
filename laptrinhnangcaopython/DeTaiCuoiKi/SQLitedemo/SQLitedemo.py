@@ -13,17 +13,17 @@ cur = conn.cursor()
 #''')
 
 #Demo them du lieu
-mahv = "22BITV03"
-hoten = "Tống Minh Triết"
-dienthoai = "0921049048"
-email = "tongminhtriet@gmail.com"
+mahv = "22BITV02"
+hoten = "Tống Minh Triet "
+dienthoai = "0949048290"
+email = "tongminht@gmail.com"
 ngaysinh = "2004-10-29"
 
 sql = f"""
 INSERT INTO HocVien(MaHV,HoTen,NgaySinh,DienThoai,Email)
-VALUES('{mahv}',{hoten}','{ngaysinh}','{dienthoai}',{email}')
+VALUES('{mahv}','{hoten}','{ngaysinh}','{dienthoai}','{email}')
 """
-#print(sql)
+print(sql)
 conn.execute(sql)
 
 conn.commit()
