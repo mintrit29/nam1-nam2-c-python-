@@ -2,11 +2,8 @@ from tkinter import *
 from tkinter import messagebox
 
 def check_login():
-    # Lấy giá trị tài khoản và mật khẩu từ entry widgets
     username = username_entry.get()
     password = password_entry.get()
-
-    # Kiểm tra tài khoản và mật khẩu
     if username == "admin" and password == "123":
         messagebox.showinfo("Thông báo", "Đăng nhập thành công!")
         open_new_window()
