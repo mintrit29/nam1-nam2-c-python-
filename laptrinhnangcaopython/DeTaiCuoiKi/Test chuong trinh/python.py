@@ -1,4 +1,6 @@
 import sqlite3
+import tkinter as tk
+from tkinter import ttk, messagebox
 
 class DoiBong:
     def __init__(self, MaDB, MaSH, TenDoi, NamTL, GiaTriDB):
@@ -160,9 +162,123 @@ class SuaCauThu:
     def __del__(self):
         self.conn.close()
 
+class HienThiDoiBong:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def hien_thi(self):
+        self.cursor.execute("SELECT * FROM DoiBong")
+        doi_bong = self.cursor.fetchall()
+
+        if doi_bong:
+            print("Danh sách đội bóng:")
+            for db in doi_bong:
+                print(f"""
+Mã Đội: {db[0]}
+Mã SH: {db[1]}
+Tên Đội: {db[2]}
+Năm Thành Lập: {db[3]}
+Giá Trị: {db[4]}
+""")
+        else:
+            print("Không có đội bóng nào trong cơ sở dữ liệu.")
+
+class ThemDoiBong:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def nhap_thong_tin(self):
+        while True:
+            self.MaDB = input("Nhập mã đội bóng (hoặc 'q' để thoát): ")
+            if self.MaDB == 'q':
+                break
+            self.MaSH = input("Nhập mã sở hữu: ")
+            self.TenDoi = input("Nhập tên đội: ")
+            self.NamTL = int(input("Nhập năm thành lập: "))
+            self.GiaTriDB = float(input("Nhập giá trị đội bóng: "))
+
+            self.them_doi_bong()
+
+    def them_doi_bong(self):
+        try:
+            self.cursor.execute("""
+                INSERT INTO DoiBong (MaDB, MaSH, TenDoi, NamTL, GiaTriDB)
+                VALUES (?, ?, ?, ?, ?)
+            """, (self.MaDB, self.MaSH, self.TenDoi, self.NamTL, self.GiaTriDB))
+            self.conn.commit()
+            print("Thêm đội bóng thành công!")
+        except sqlite3.Error as e:
+            print("Lỗi khi thêm đội bóng:", e)
+
+class XoaDoiBong:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def xoa_doi_bong(self):
+        self.hien_thi = HienThiDoiBong()
+        self.hien_thi.hien_thi()
+        ma_db = input("Nhập mã đội bóng để xóa (hoặc 'q' để thoát): ")
+        if ma_db == 'q':
+            return
+
+        try:
+            self.cursor.execute("DELETE FROM DoiBong WHERE MaDB = ?", (ma_db,))
+            self.conn.commit()
+            if self.cursor.rowcount > 0:
+                print("Xóa đội bóng thành công!")
+            else:
+                print("Không tìm thấy đội bóng với mã đó.")
+        except sqlite3.Error as e:
+            print("Lỗi khi xóa đội bóng:", e)
+
+class SuaDoiBong:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def sua_doi_bong(self):
+        self.hien_thi = HienThiDoiBong()
+        self.hien_thi.hien_thi()
+        ma_db = input("Nhập mã đội bóng để sửa (hoặc 'q' để thoát): ")
+        if ma_db == 'q':
+            return
+
+        self.cursor.execute("SELECT * FROM DoiBong WHERE MaDB = ?", (ma_db,))
+        doi_bong = self.cursor.fetchone()
+
+        if doi_bong:
+            # Nhận thông tin mới từ người dùng
+            ma_sh_moi = input(f"Nhập mã số hữu mới (hiện tại: {doi_bong[1]}): ")
+            ten_doi_moi = input(f"Nhập tên đội mới (hiện tại: {doi_bong[2]}): ")
+            nam_tl_moi = int(input(f"Nhập năm thành lập mới (hiện tại: {doi_bong[3]}): "))
+            gia_tri_moi = float(input(f"Nhập giá trị mới (hiện tại: {doi_bong[4]}): "))
+
+            try:
+                self.cursor.execute("""
+                    UPDATE DoiBong
+                    SET MaSH = ?, TenDoi = ?, NamTL = ?, GiaTriDB = ?
+                    WHERE MaDB = ?
+                """, (ma_sh_moi, ten_doi_moi, nam_tl_moi, gia_tri_moi, ma_db))
+                self.conn.commit()
+                print("Cập nhật thông tin đội bóng thành công!")
+            except sqlite3.Error as e:
+                print("Lỗi khi sửa thông tin đội bóng:", e)
+        else:
+            print("Không tìm thấy đội bóng với mã đó.")
+
 #them_cau_thu = ThemCauThu()
 #them_cau_thu.nhap_thong_tin()
 #xoa_cau_thu = XoaCauThu()
 #xoa_cau_thu.xoa_cau_thu()
 #sua_cau_thu = SuaCauThu()
 #sua_cau_thu.sua_cau_thu()
+
+#them_doi_bong = ThemDoiBong()
+#them_doi_bong.nhap_thong_tin()
+#xoa_doi_bong = XoaDoiBong()
+#xoa_doi_bong.xoa_doi_bong()
+#sua_doi_bong = SuaDoiBong()
+#sua_doi_bong.sua_doi_bong()
