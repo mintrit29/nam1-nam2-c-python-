@@ -269,6 +269,113 @@ class SuaDoiBong:
         else:
             print("Không tìm thấy đội bóng với mã đó.")
 
+class TimKiemCauThu:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def tim_kiem(self):
+        print("Tùy chọn tìm kiếm:")
+        print("1. Tìm kiếm theo tên")
+        print("2. Tìm kiếm theo vị trí")
+        print("3. Tìm kiếm theo quốc tịch")
+        lua_chon = input("Nhập lựa chọn của bạn: ")
+
+        if lua_chon == '1':
+            ten_cau_thu = input("Nhập tên cầu thủ: ")
+            self.tim_theo_ten(ten_cau_thu)
+        elif lua_chon == '2':
+            vi_tri = input("Nhập vị trí: ")
+            self.tim_theo_vi_tri(vi_tri)
+        elif lua_chon == '3':
+            quoc_tich = input("Nhập quốc tịch: ")
+            self.tim_theo_quoc_tich(quoc_tich)
+        else:
+            print("Lựa chọn không hợp lệ.")
+
+    def tim_theo_ten(self, ten_cau_thu):
+        self.cursor.execute("SELECT * FROM CauThu WHERE TenCauThu LIKE ?", ('%' + ten_cau_thu + '%',))
+        cau_thu = self.cursor.fetchall()
+        self.hien_thi_ket_qua(cau_thu)
+
+    def tim_theo_vi_tri(self, vi_tri):
+        self.cursor.execute("SELECT * FROM CauThu WHERE ViTri = ?", (vi_tri,))
+        cau_thu = self.cursor.fetchall()
+        self.hien_thi_ket_qua(cau_thu)
+
+    def tim_theo_quoc_tich(self, quoc_tich):
+        self.cursor.execute("SELECT * FROM CauThu WHERE QuocTich = ?", (quoc_tich,))
+        cau_thu = self.cursor.fetchall()
+        self.hien_thi_ket_qua(cau_thu)
+
+    def hien_thi_ket_qua(self, cau_thu):
+        if cau_thu:
+            print("Kết quả tìm kiếm:")
+            for ct in cau_thu:
+                print(f"""
+Mã CT: {ct[0]}
+Tên: {ct[1]}
+Mã Đội: {ct[2]}
+Số áo: {ct[3]}
+Vị trí: {ct[4]}
+Ngày sinh: {ct[5]}
+Quốc tịch: {ct[6]}
+Chiều cao: {ct[7]} cm
+Cân nặng: {ct[8]} kg
+Giá trị: {ct[9]}
+""")
+        else:
+            print("Không tìm thấy cầu thủ nào phù hợp.")
+
+class SapXepCauThu:
+    def __init__(self):
+        self.conn = sqlite3.connect('bongda.db')
+        self.cursor = self.conn.cursor()
+
+    def sap_xep(self):
+        print("Tùy chọn sắp xếp:")
+        print("1. Sắp xếp theo giá trị tăng dần")
+        print("2. Sắp xếp theo giá trị giảm dần")
+        lua_chon = input("Nhập lựa chọn của bạn: ")
+
+        if lua_chon == '1':
+            self.sap_xep_tang_dan()
+        elif lua_chon == '2':
+            self.sap_xep_giam_dan()
+        else:
+            print("Lựa chọn không hợp lệ.")
+
+    def sap_xep_tang_dan(self):
+        self.cursor.execute("SELECT * FROM CauThu ORDER BY GiaTriCT ASC")
+        cau_thu = self.cursor.fetchall()
+        self.hien_thi_ket_qua(cau_thu)
+
+    def sap_xep_giam_dan(self):
+        self.cursor.execute("SELECT * FROM CauThu ORDER BY GiaTriCT DESC")
+        cau_thu = self.cursor.fetchall()
+        self.hien_thi_ket_qua(cau_thu)
+
+    def hien_thi_ket_qua(self, cau_thu):
+        if cau_thu:
+            print("Danh sách cầu thủ đã sắp xếp:")
+            for ct in cau_thu:
+                print(f"""
+Mã CT: {ct[0]}
+Tên: {ct[1]}
+Mã Đội: {ct[2]}
+Số áo: {ct[3]}
+Vị trí: {ct[4]}
+Ngày sinh: {ct[5]}
+Quốc tịch: {ct[6]}
+Chiều cao: {ct[7]} cm
+Cân nặng: {ct[8]} kg
+Giá trị: {ct[9]}
+""")
+        else:
+            print("Không tìm thấy cầu thủ nào.")
+
+
+
 #them_cau_thu = ThemCauThu()
 #them_cau_thu.nhap_thong_tin()
 #xoa_cau_thu = XoaCauThu()
@@ -282,3 +389,9 @@ class SuaDoiBong:
 #xoa_doi_bong.xoa_doi_bong()
 #sua_doi_bong = SuaDoiBong()
 #sua_doi_bong.sua_doi_bong()
+
+#tim_kiem_cau_thu = TimKiemCauThu()
+#tim_kiem_cau_thu.tim_kiem()
+
+#sap_xep_cau_thu = SapXepCauThu()
+#sap_xep_cau_thu.sap_xep()
