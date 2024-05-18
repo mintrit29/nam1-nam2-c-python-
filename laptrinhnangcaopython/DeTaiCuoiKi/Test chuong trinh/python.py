@@ -1,5 +1,6 @@
 import sqlite3
 import tkinter as tk
+import datetime
 from tkinter import ttk, messagebox
 
 class DoiBong:
@@ -68,10 +69,10 @@ class ThemCauThu:
 
     def nhap_thong_tin(self):
         while True:
-            self.MaCT = input("Nhập mã cầu thủ (hoặc 'q' để thoát): ")
-            if self.MaCT == 'q':
+            # Không cần nhập MaCT nữa
+            self.TenCauThu = input("Nhập tên cầu thủ (hoặc 'q' để thoát): ")
+            if self.TenCauThu == 'q':
                 break
-            self.TenCauThu = input("Nhập tên cầu thủ: ")
             self.SoAo = int(input("Nhập số áo: "))
             self.ViTri = input("Nhập vị trí: ")
             self.NgaySinh = input("Nhập ngày sinh (YYYY-MM-DD): ")
@@ -84,10 +85,11 @@ class ThemCauThu:
 
     def them_cau_thu(self):
         try:
+            # Không cần đặt giá trị cho MaCT nữa
             self.cursor.execute("""
-                INSERT INTO CauThu (MaCT, TenCauThu, MaDB, TenDoi, SoAo, ViTri, NgaySinh, QuocTich, ChieuCao, CanNang, GiaTriCT)
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (self.MaCT, self.TenCauThu, self.ma_db, self.ten_db, self.SoAo, self.ViTri, self.NgaySinh, self.QuocTich, self.ChieuCao, self.CanNang, self.GiaTriCT))
+                INSERT INTO CauThu (TenCauThu, MaDB, TenDoi, SoAo, ViTri, NgaySinh, QuocTich, ChieuCao, CanNang, GiaTriCT)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (self.TenCauThu, self.ma_db, self.ten_db, self.SoAo, self.ViTri, self.NgaySinh, self.QuocTich, self.ChieuCao, self.CanNang, self.GiaTriCT))
             self.conn.commit()
             print("Thêm cầu thủ thành công!")
         except sqlite3.Error as e:
@@ -396,6 +398,7 @@ def chuyen_nhuong_cau_thu(ma_db_hien_tai):
         else:
             print("Không tìm thấy đội bóng với mã đó.")
 
+    # Hiển thị cầu thủ của đội bóng hiện tại
     hien_thi_cau_thu = HienThiCauThu(ma_db_hien_tai)
     hien_thi_cau_thu.hien_thi()
 
@@ -404,11 +407,11 @@ def chuyen_nhuong_cau_thu(ma_db_hien_tai):
         if ma_ct == 'q':
             return
 
-        cursor.execute("SELECT TenCauThu, GiaTriCT FROM CauThu WHERE MaCT = ? AND MaDB = ?", (ma_ct, ma_db_hien_tai))
+        cursor.execute("SELECT TenCauThu, GiaTriCT, TenDoi FROM CauThu WHERE MaCT = ? AND MaDB = ?", (ma_ct, ma_db_hien_tai))
         cau_thu = cursor.fetchone()
 
         if cau_thu:
-            ten_cau_thu, gia_tri_ct = cau_thu
+            ten_cau_thu, gia_tri_ct, ten_db_cu = cau_thu
             break
         else:
             print("Không tìm thấy cầu thủ với mã đó trong đội bóng.")
@@ -427,38 +430,47 @@ def chuyen_nhuong_cau_thu(ma_db_hien_tai):
 
         # Lưu lịch sử chuyển nhượng
         cursor.execute("""
-            INSERT INTO ChuyenDich (MaGD, MaCT, MaDB, TenCauThu, GiaTriCT, TenDoi, NgayGiaoDich)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-        """, (None, ma_ct, ma_db_hien_tai, ten_cau_thu, gia_tri_ct, ten_db_muon_chuyen, ngay_thang_nam))
+            INSERT INTO ChuyenDich (MaCT, MaDB, TenCauThu, GiaTriCT, TenDoi, NgayGiaoDich)
+            VALUES (?, ?, ?, ?, ?, ?)
+        """, (ma_ct, ma_db_hien_tai, ten_cau_thu, gia_tri_ct, ten_db_cu, ngay_thang_nam))
         conn.commit()
 
         # Hiển thị thông báo cho bên chuyển nhượng
-        print(f"Chuyển nhượng thành công:\n{thoi_gian} | {ngay_thang_nam} | {ten_cau_thu} | {gia_tri_ct} | Từ đội bóng {ten_db} đến đội bóng {ten_db_muon_chuyen}")
-
-        # Hiển thị thông báo cho bên nhận chuyển nhượng
-        cursor.execute("SELECT TenDoi FROM DoiBong WHERE MaDB = ?", (ma_db_muon_chuyen,))
-        ten_db_moi = cursor.fetchone()[0]
-        print(f"Nhận cầu thủ thành công:\n{thoi_gian} | {ngay_thang_nam} | {ten_cau_thu} | {gia_tri_ct} | Từ đội bóng {ten_db} đến đội bóng {ten_db_moi}")
+        print(f"Chuyển nhượng thành công:\n{thoi_gian} | {ngay_thang_nam} | {ten_cau_thu} | {gia_tri_ct} | Từ đội bóng {ten_db_cu} đến đội bóng {ten_db_muon_chuyen}")
 
     except sqlite3.Error as e:
         print("Lỗi khi chuyển nhượng:", e)
 
     conn.close()
 
-def xem_lich_su_chuyen_nhuong():
+def xem_lich_su_chuyen_nhuong(ma_db_hien_tai):
     conn = sqlite3.connect('bongda.db')
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM ChuyenDich")
+    cursor.execute("SELECT * FROM ChuyenDich WHERE MaDB = ? OR MaCT IN (SELECT MaCT FROM CauThu WHERE MaDB = ?)", (ma_db_hien_tai, ma_db_hien_tai))
     lich_su = cursor.fetchall()
 
     if lich_su:
         print("Lịch sử chuyển nhượng:")
         for gd in lich_su:
             print(f"""
-{gd[5]} | {gd[6]} | {gd[3]} | {gd[4]} | Từ đội bóng {gd[5]} đến đội bóng {gd[4]}
+Mã Giao Dịch: {gd[0]}
+Mã Cầu Thủ: {gd[1]}
+Mã Đội Bóng: {gd[2]}
+Tên Cầu Thủ: {gd[3]}
+Giá Trị: {gd[4]}
+Tên Đội Bóng: {gd[5]}
+Ngày Giao Dịch: {gd[6]}
 """)
     else:
         print("Không có lịch sử chuyển nhượng.")
+    conn.close()
+
+def xoa_lich_su_chuyen_nhuong(ma_db_hien_tai):
+    conn = sqlite3.connect('bongda.db')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM ChuyenDich WHERE MaDB = ? OR MaCT IN (SELECT MaCT FROM CauThu WHERE MaDB = ?)", (ma_db_hien_tai, ma_db_hien_tai))
+    conn.commit()
+    print("Xóa lịch sử chuyển nhượng thành công!")
     conn.close()
 
 def menu():
@@ -498,7 +510,8 @@ def menu():
                     print("7. Xem tổng giá trị đội bóng")
                     print("8. Chuyển nhượng cầu thủ")
                     print("9. Xem lịch sử chuyển nhượng")
-                    print("10. Quay lại menu chính")
+                    print("10. Xóa lịch sử chuyển nhượng")
+                    print("11. Quay lại menu chính")
                     lua_chon = input("Nhập lựa chọn của bạn: ")
 
                     if lua_chon == '1':
@@ -525,8 +538,10 @@ def menu():
                     elif lua_chon == '8':  # Chuyển nhượng cầu thủ
                         chuyen_nhuong_cau_thu(ma_db)
                     elif lua_chon == '9':  # Xem lịch sử chuyển nhượng
-                        xem_lich_su_chuyen_nhuong()
-                    elif lua_chon == '10':
+                        xem_lich_su_chuyen_nhuong(ma_db)  # Truyền mã đội bóng
+                    elif lua_chon == '10':  # Xóa lịch sử chuyển nhượng
+                        xoa_lich_su_chuyen_nhuong(ma_db)  # Truyền mã đội bóng
+                    elif lua_chon == '11':
                         break
                     else:
                         print("Lựa chọn không hợp lệ.")
