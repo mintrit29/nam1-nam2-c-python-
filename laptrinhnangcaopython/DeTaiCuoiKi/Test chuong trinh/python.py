@@ -4,6 +4,8 @@ from PIL import Image, ImageTk
 import sqlite3
 import datetime
 import docx
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 class DoiBong:
     def __init__(self, MaDB, TenDoi, NamTL, GiaTriDB):
@@ -744,7 +746,7 @@ class PlayerManagementWindow(tk.Toplevel):
         title_frame.pack(fill="x", pady=10)
 
         # Tên đội bóng ở giữa
-        team_name_label = tk.Label(title_frame, text=ten_doi, font=("Arial", 18, "bold"), bg="#ffb3c6", relief="solid", borderwidth=2)
+        team_name_label = tk.Label(title_frame, text=ten_doi, font=("Arial", 18, "bold"), bg="#FFCC99", relief="solid", borderwidth=2)
         team_name_label.pack(side="left", expand=True)
 
         # Nút tìm kiếm
@@ -809,7 +811,7 @@ class PlayerManagementWindow(tk.Toplevel):
         # --- Kết nối các nút chức năng với backend ---
         self.function_buttons[0].config(command=self.xem_lich_su_chuyen_nhuong)
         self.function_buttons[1].config(command=self.in_danh_sach_cau_thu)
-        self.function_buttons[2].config(command=self.thong_ke)
+        self.function_buttons[2].config(command=self.show_statistic)  # Sử dụng hàm show_statistic
         self.function_buttons[3].config(command=self.them_cau_thu)
         self.function_buttons[4].config(command=self.xoa_cau_thu)
         self.function_buttons[5].config(command=self.sua_cau_thu)
@@ -830,6 +832,44 @@ class PlayerManagementWindow(tk.Toplevel):
             self.player_listbox.insert(tk.END, f"{player[0]} - {player[1]}")  # Hiển thị Mã CT và tên cầu thủ
         self.cap_nhat_tong_gia_tri()
         self.player_listbox.bind("<<ListboxSelect>>", self.on_player_select)
+    def show_statistic(self):
+
+            self.conn = sqlite3.connect('bongda.db')
+            self.cursor = self.conn.cursor()
+            self.cursor.execute("SELECT TenDoi, SUM(GiaTriCT) FROM CauThu GROUP BY MaDB")
+            data = self.cursor.fetchall()
+
+        # Tạo biểu đồ cột
+            ten_doi = [row[0] for row in data]
+            tong_gia_tri = [row[1] for row in data]
+
+            fig, ax = plt.subplots(figsize=(6, 4))  # Tạo figure và axes cho biểu đồ
+
+        # Tạo biểu đồ cột
+            ax.bar(ten_doi, tong_gia_tri)
+
+        # Cài đặt tiêu đề cho biểu đồ
+            ax.set_xlabel("Tên Đội")
+            ax.set_ylabel("Tổng Giá Trị (USD)")
+            ax.set_title("Biểu đồ giá trị đội hình")
+
+        # Xoay nhãn trục x để tránh chồng chéo
+            plt.xticks(rotation=45)
+
+        # Tạo cửa sổ mới để hiển thị biểu đồ
+            statistic_window = tk.Toplevel(self)
+            statistic_window.title("Thống kê giá trị đội hình")
+
+        # Tạo canvas và đặt vào cửa sổ thống kê
+            canvas = FigureCanvasTkAgg(fig, master=statistic_window)
+            canvas_widget = canvas.get_tk_widget()
+            canvas_widget.pack(pady=20)
+
+        # Vẽ biểu đồ
+            canvas.draw()
+
+            self.conn.close()
+
         
     def cap_nhat_tong_gia_tri(self):
         tong_gia_tri = tinh_tong_gia_tri_doi_bong(self.ma_db)
@@ -915,7 +955,85 @@ class PlayerManagementWindow(tk.Toplevel):
 
     def in_danh_sach_cau_thu(self):
         # TODO: Thêm logic in danh sách cầu thủ
-        print("In danh sách cầu thủ")
+
+        doc = docx.Document()
+
+        # Thêm tiêu đề cho file Word
+        doc.add_heading(f"Danh Sách Cầu Thủ - {self.title().split(' - ')[1]}", 0)
+
+        # Lấy danh sách cầu thủ từ Listbox
+        cau_thu_list = [self.player_listbox.get(i) for i in range(self.player_listbox.size())]
+
+        # Tạo bảng trong Word
+        table = doc.add_table(rows=1, cols=6)  # Tạo bảng có 6 cột
+        table.style = 'Table Grid'  # Thêm style cho bảng
+
+        # Định dạng tiêu đề cột
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = "Mã CT"
+        hdr_cells[1].text = "Tên Cầu Thủ"
+        hdr_cells[2].text = "Số Áo"
+        hdr_cells[3].text = "Vị Trí"
+        hdr_cells[4].text = "Ngày Sinh"
+        hdr_cells[5].text = "Quốc Tịch"
+
+        for i, cau_thu in enumerate(cau_thu_list):
+            # Tách thông tin cầu thủ từ Listbox
+            ma_ct, ten_cau_thu = cau_thu.split(" - ")
+
+            # Lấy thông tin chi tiết cầu thủ từ database
+            self.cursor.execute("SELECT SoAo, ViTri, NgaySinh, QuocTich FROM CauThu WHERE MaCT = ?", (ma_ct,))
+            so_ao, vi_tri, ngay_sinh, quoc_tich = self.cursor.fetchone()
+
+            # Thêm dữ liệu vào bảng Word
+            row_cells = table.add_row().cells
+            row_cells[0].text = ma_ct
+            row_cells[1].text = ten_cau_thu
+            row_cells[2].text = str(so_ao)
+            row_cells[3].text = vi_tri
+            row_cells[4].text = str(ngay_sinh)
+            row_cells[5].text = quoc_tich
+
+        # Lưu file Word
+        doc.save("danh_sach_cau_thu.docx")
+        messagebox.showinfo("Thông báo", "In danh sách cầu thủ thành công!")
+        doc = docx.Document()
+
+        # Thêm tiêu đề cho file Word
+        doc.add_heading(f"Danh Sách Cầu Thủ - {self.title().split(' - ')[1]}", 0)
+
+        # Lấy danh sách cầu thủ từ Listbox
+        cau_thu_list = [self.player_listbox.get(i) for i in range(self.player_listbox.size())]
+
+        # Tạo bảng trong Word
+        table = doc.add_table(rows=1, cols=6)  # Tạo bảng có 6 cột
+        table.style = 'Table Grid'  # Thêm style cho bảng
+
+        # Định dạng tiêu đề cột
+        hdr_cells = table.rows[0].cells
+        hdr_cells[0].text = "Mã CT"
+        hdr_cells[1].text = "Tên Cầu Thủ"
+        hdr_cells[2].text = "Số Áo"
+        hdr_cells[3].text = "Vị Trí"
+        hdr_cells[4].text = "Ngày Sinh"
+        hdr_cells[5].text = "Quốc Tịch"
+
+        for i, cau_thu in enumerate(cau_thu_list):
+            # Tách thông tin cầu thủ từ Listbox
+            ma_ct, ten_cau_thu = cau_thu.split(" - ")
+
+            # Lấy thông tin chi tiết cầu thủ từ database
+            self.cursor.execute("SELECT SoAo, ViTri, NgaySinh, QuocTich FROM CauThu WHERE MaCT = ?", (ma_ct,))
+            so_ao, vi_tri, ngay_sinh, quoc_tich = self.cursor.fetchone()
+
+            # Thêm dữ liệu vào bảng Word
+            row_cells = table.add_row().cells
+            row_cells[0].text = ma_ct
+            row_cells[1].text = ten_cau_thu
+            row_cells[2].text = str(so_ao)
+            row_cells[3].text = vi_tri
+            row_cells[4].text = str(ngay_sinh)
+            row_cells[5].text = quoc_tich
 
     def thong_ke(self):
         # TODO: Thêm logic thống kê
