@@ -9,7 +9,7 @@ cursor = conn.cursor()
 # Tạo bảng DOIBONG
 cursor.execute('''
 CREATE TABLE DOIBONG (
-  MaDB TEXT PRIMARY KEY,
+  MaDB INTEGER PRIMARY KEY AUTOINCREMENT,
   TenDoi TEXT NOT NULL,
   NamTL INTEGER,
   GiaTriDB REAL

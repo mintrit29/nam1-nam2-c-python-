@@ -104,6 +104,63 @@ NODE *TimKiem(TREE t, int x)
         }
     }
 }
+// xuat node co 2 con
+void Node_Co_2_Con(TREE t)
+{
+    if (t != NULL)
+    {
+        if (t->pLeft != NULL & t->pRight != NULL)
+        {
+            cout << t->data << " ";
+        }
+        Node_Co_2_Con(t->pLeft);
+        Node_Co_2_Con(t->pRight);
+    }
+}
+// xuat node co 1 con
+void Node_Co_1_Con(TREE t)
+{
+    if (t != NULL)
+    {
+        if (t->pLeft != NULL &t->pRight == NULL || t->pLeft == NULL &t->pRight != NULL)
+        {
+            cout << t->data << " ";
+        }
+        Node_Co_1_Con(t->pLeft);
+        Node_Co_1_Con(t->pRight);
+    }
+}
+// xuat cac node la
+void Node_La(TREE t)
+{
+    if (t != NULL)
+    {
+        if (t->pLeft == NULL && t->pRight == NULL)
+        {
+            cout << t->data << " ";
+        }
+        Node_La(t->pLeft);
+        Node_La(t->pRight);
+    }
+}
+// ham tim phan tu lon nhat trong cay
+int TimMax(TREE t)
+{
+    if (t->pRight == NULL)
+    {
+        return t->data;
+    }
+    int max = t->data;
+    if (t->pRight != NULL)
+    {
+        int right = TimMax(t->pRight);
+        if (max < right)
+        {
+            max = right;
+        }
+    }
+    return max;
+}
 
 void Menu(TREE &t)
 {
@@ -116,12 +173,16 @@ void Menu(TREE &t)
         cout << "\n4.Xuat du lieu cay theo LNR";
         cout << "\n5.Xuat du lieu cay theo RNL";
         cout << "\n6.Tim kiem Node";
+        cout << "\n7. Xuat Node co 2 con";
+        cout << "\n8. Xuat Node co 1 con";
+        cout << "\n9.Tim Node la";
+        cout << "\n10.Tim Node co Data lon nhat";
         cout << "\n0.Ket thuc chuong trinh";
 
         int luachon;
         cout << "\nNhap lua chon: ";
         cin >> luachon;
-        if (luachon < 0 || luachon > 6)
+        if (luachon < 0 || luachon > 10)
         {
             cout << "\nLua chon khong hop le";
             system("pause");
@@ -167,6 +228,29 @@ void Menu(TREE &t)
             {
                 cout << "\nPhan tu " << x << " ton tai trong cay";
             }
+            system("pause");
+        }
+        else if (luachon == 7)
+        {
+            cout << "\nNode co 2 con: ";
+            Node_Co_2_Con(t);
+            system("pause");
+        }
+        else if (luachon == 8)
+        {
+            cout << "\nNode co 1 con: ";
+            Node_Co_1_Con(t);
+            system("pause");
+        }
+        else if (luachon == 9)
+        {
+            cout << "\nNode la: ";
+            Node_La(t);
+            system("pause");
+        }
+        else if (luachon == 10)
+        {
+            cout << "\nMAX: " << TimMax(t);
             system("pause");
         }
         else

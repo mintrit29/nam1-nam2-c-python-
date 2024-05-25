@@ -515,20 +515,13 @@ class LoginApp(tk.Tk):
         self.create_widgets()
 
     def create_widgets(self):
-        # Tải ảnh
-        try:
-            image = Image.open("bongda.jpg")  # Thay thế "bongda.jpg" bằng đường dẫn đến ảnh
-            photo = ImageTk.PhotoImage(image)
-        except FileNotFoundError:
-            messagebox.showerror("Lỗi", "Không tìm thấy ảnh!")
-            return
+        image = Image.open("bongda.jpg")
+        photo = ImageTk.PhotoImage(image)
 
-        # Tạo Canvas để hiển thị ảnh
         canvas = tk.Canvas(self, width=600, height=400)
-        canvas.pack(fill="both", expand=True) # Thay đổi fill thành "both"
+        canvas.pack(fill="none", expand=True)
         canvas.create_image(0, 0, image=photo, anchor="nw")
 
-        # Tạo Frame để chứa các phần tử đăng nhập
         frame = tk.Frame(self, bg='#CCEEFF')
         canvas.create_window(300, 200, window=frame)
 
@@ -546,8 +539,6 @@ class LoginApp(tk.Tk):
         password_label.grid(row=2, column=0)
         self.password_entry.grid(row=2, column=1, pady=5)
         login_button.grid(row=3, column=0, columnspan=2, pady=15)
-        # Lưu trữ ảnh để nó không bị xóa khỏi bộ nhớ
-        self.photo = photo
 
     def login(self):
         username = "admin"
@@ -744,7 +735,7 @@ class PlayerManagementWindow(tk.Toplevel):
         title_frame.pack(fill="x", pady=10)
 
         # Tên đội bóng ở giữa
-        team_name_label = tk.Label(title_frame, text=ten_doi, font=("Arial", 18, "bold"), bg="#ffb3c6", relief="solid", borderwidth=2)
+        team_name_label = tk.Label(title_frame, text=ten_doi, font=("Arial", 18, "bold"), bg="#FFCC99", relief="solid", borderwidth=2)
         team_name_label.pack(side="left", expand=True)
 
         # Nút tìm kiếm
