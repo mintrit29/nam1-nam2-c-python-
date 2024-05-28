@@ -336,10 +336,6 @@ class SapXepCauThu:
             self.hien_thi_callback(ket_qua)
             sort_window.destroy()
 
-import sqlite3
-from tkinter import messagebox
-import datetime
-
 def chuyen_nhuong_cau_thu(ma_ct, ma_db_moi, doi_bong_moi, ten_cau_thu, player_window):
     conn = sqlite3.connect('bongda.db')
     cursor = conn.cursor()
