@@ -1,5 +1,9 @@
 #include <iostream>
 #include <stdio.h>
+#include <string>
+#include <ctime>
+#include <sstream>
+
 using namespace std;
 
 struct PERSON
@@ -19,6 +23,7 @@ struct Node
     Node *rightChild;
 };
 
+// Hàm thêm người vào cây gia phả
 void AddPerson(Node *&root, PERSON newPerson, string parentName)
 {
     if (root == NULL)
@@ -41,11 +46,10 @@ void AddPerson(Node *&root, PERSON newPerson, string parentName)
         {
             cout << "Parent already has two children." << endl;
         }
-        return; // Dừng đệ quy sau khi thêm thành công
+        return;
     }
     else
     {
-        // Chỉ đệ quy nếu chưa tìm thấy cha mẹ
         if (root->leftChild != NULL)
         {
             AddPerson(root->leftChild, newPerson, parentName);
@@ -83,26 +87,45 @@ void InThongTinNguoi(const PERSON &person)
     cout << "- Gioi tinh: " << person.Gender << endl;
     cout << "- Noi sinh: " << person.BirthPlace << endl;
     cout << "- Ngay sinh: " << person.DateOfBirth << endl;
+
+    // Tính tuổi
+    int yearOfBirth, monthOfBirth, dayOfBirth;
+    sscanf(person.DateOfBirth.c_str(), "%d/%d/%d", &dayOfBirth, &monthOfBirth, &yearOfBirth);
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    int currentYear = 1900 + ltm->tm_year;
+    int age = currentYear - yearOfBirth;
+
+    cout << "- Tuoi: " << age << endl;
+
     if (!person.DateOfDeath.empty())
     {
-        cout << "- Ngay mat: " << person.DateOfDeath << endl;
+        cout << "- Tinh trang: Da mat" << endl;
+    }
+    else
+    {
+        cout << "- Tinh trang: Con song" << endl;
     }
     cout << "- Nghe nghiep: " << person.Job << endl;
 }
 
-// Hàm duyệt cây theo thứ tự NLR để in gia phả
-void DuyetCayNLR(Node *root)
+// Hàm duyệt cây gia phả theo thứ tự NLR và in thông tin
+void PrintFamilyTree(Node *root, int level = 0)
 {
     if (root != NULL)
     {
+        for (int i = 0; i < level; i++)
+        {
+            cout << "  ";
+        }
         InThongTinNguoi(root->data);
-        DuyetCayNLR(root->leftChild);
-        DuyetCayNLR(root->rightChild);
+        PrintFamilyTree(root->leftChild, level + 1);
+        PrintFamilyTree(root->rightChild, level + 1);
     }
 }
 
-// Hàm tìm kiếm thông tin một người trong cây
-Node *TimKiemNguoi(Node *root, const string &name)
+// Hàm tìm kiếm người trong cây gia phả
+Node *TimKiemNguoi(Node *root, const string &name, const int &level)
 {
     if (root == NULL)
     {
@@ -112,15 +135,15 @@ Node *TimKiemNguoi(Node *root, const string &name)
     {
         return root;
     }
-    Node *found = TimKiemNguoi(root->leftChild, name);
+    Node *found = TimKiemNguoi(root->leftChild, name, level + 1);
     if (found != NULL)
     {
         return found;
     }
-    return TimKiemNguoi(root->rightChild, name);
+    return TimKiemNguoi(root->rightChild, name, level + 1);
 }
 
-// Hàm main để quản lý cây gia phả
+// Hàm main
 int main()
 {
     Node *familyTree = NULL; // Khởi tạo cây gia phả rỗng
@@ -143,31 +166,27 @@ int main()
             PERSON newPerson = NhapThongTinNguoi();
             string parentName = "";
 
-            // Xử lý nhập tên cha mẹ
             cout << "Nhap ten cha/me (nhap 'q' de bo qua neu la goc): ";
-            getline(cin >> ws, parentName); // Đọc toàn bộ dòng
+            getline(cin >> ws, parentName);
 
-            // Kiểm tra nếu parentName là "q"
             if (parentName != "q")
             {
-                // Kiểm tra xem cha mẹ có tồn tại không
-                while (TimKiemNguoi(familyTree, parentName) == NULL)
+                while (TimKiemNguoi(familyTree, parentName, 0) == NULL)
                 {
                     cout << "Khong tim thay cha/me. Vui long nhap lai (hoac 'q' de bo qua): ";
                     getline(cin >> ws, parentName);
                     if (parentName == "q")
                     {
-                        break; // Bỏ qua nếu người dùng nhập "q"
+                        break;
                     }
                 }
             }
             else
             {
-                parentName = ""; // Đặt parentName thành rỗng nếu là gốc
+                parentName = "";
             }
 
-            // Xử lý tên trùng lặp
-            while (TimKiemNguoi(familyTree, newPerson.Name) != NULL)
+            while (TimKiemNguoi(familyTree, newPerson.Name, 0) != NULL)
             {
                 cout << "Ten da ton tai. Vui long nhap lai ho va ten: ";
                 getline(cin >> ws, newPerson.Name);
@@ -181,10 +200,12 @@ int main()
             string searchName;
             cout << "Nhap ten nguoi can tim: ";
             getline(cin >> ws, searchName);
-            Node *found = TimKiemNguoi(familyTree, searchName);
+            int level = 0;
+            Node *found = TimKiemNguoi(familyTree, searchName, level);
             if (found != NULL)
             {
                 InThongTinNguoi(found->data);
+                cout << "- Thuoc doi thu: " << level + 1 << endl;
             }
             else
             {
@@ -193,7 +214,7 @@ int main()
             break;
         }
         case 3:
-            DuyetCayNLR(familyTree);
+            PrintFamilyTree(familyTree);
             break;
         case 0:
             cout << "Tam biet!" << endl;
