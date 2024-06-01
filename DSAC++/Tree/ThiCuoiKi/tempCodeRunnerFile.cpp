@@ -125,7 +125,7 @@ void PrintFamilyTree(Node *root, int level = 0)
 }
 
 // Hàm tìm kiếm người trong cây gia phả
-Node *TimKiemNguoi(Node *root, const string &name, int &level)
+Node *TimKiemNguoi(Node *root, const string &name, int &level)  // Truyền theo tham chiếu
 {
     if (root == NULL)
     {
@@ -135,17 +135,12 @@ Node *TimKiemNguoi(Node *root, const string &name, int &level)
     {
         return root;
     }
-
-    int nextLevel = level + 1;
-    Node *found = TimKiemNguoi(root->leftChild, name, nextLevel);
+    Node *found = TimKiemNguoi(root->leftChild, name, level + 1); // Tăng level
     if (found != NULL)
     {
-        level = nextLevel;
         return found;
     }
-
-    nextLevel = level + 1;
-    return TimKiemNguoi(root->rightChild, name, nextLevel);
+    return TimKiemNguoi(root->rightChild, name, level + 1); // Tăng level
 }
 
 // Hàm main
@@ -176,8 +171,7 @@ int main()
 
             if (parentName != "q")
             {
-                int parentLevel = 0;
-                while (TimKiemNguoi(familyTree, parentName, parentLevel) == NULL)
+                while (TimKiemNguoi(familyTree, parentName, 0) == NULL)
                 {
                     cout << "Khong tim thay cha/me. Vui long nhap lai (hoac 'q' de bo qua): ";
                     getline(cin >> ws, parentName);
@@ -192,8 +186,7 @@ int main()
                 parentName = "";
             }
 
-            int newPersonLevel = 0;
-            while (TimKiemNguoi(familyTree, newPerson.Name, newPersonLevel) != NULL)
+            while (TimKiemNguoi(familyTree, newPerson.Name, 0) != NULL)
             {
                 cout << "Ten da ton tai. Vui long nhap lai ho va ten: ";
                 getline(cin >> ws, newPerson.Name);
@@ -207,12 +200,12 @@ int main()
             string searchName;
             cout << "Nhap ten nguoi can tim: ";
             getline(cin >> ws, searchName);
-            int searchLevel = 0;
-            Node *found = TimKiemNguoi(familyTree, searchName, searchLevel);
+            int level = 0;
+            Node *found = TimKiemNguoi(familyTree, searchName, level);
             if (found != NULL)
             {
                 InThongTinNguoi(found->data);
-                cout << "- Thuoc doi thu: " << searchLevel + 1 << endl;
+                cout << "- Thuoc doi thu: " << level + 1 << endl;
             }
             else
             {
