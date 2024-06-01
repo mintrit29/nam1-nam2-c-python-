@@ -23,7 +23,6 @@ struct Node
     Node *rightChild;
 };
 
-// Hàm thêm người vào cây gia phả
 void AddPerson(Node *&root, PERSON newPerson, string parentName)
 {
     if (root == NULL)
@@ -61,7 +60,6 @@ void AddPerson(Node *&root, PERSON newPerson, string parentName)
     }
 }
 
-// Hàm nhập thông tin một người
 PERSON NhapThongTinNguoi()
 {
     PERSON person;
@@ -80,7 +78,6 @@ PERSON NhapThongTinNguoi()
     return person;
 }
 
-// Hàm in thông tin một người
 void InThongTinNguoi(const PERSON &person)
 {
     cout << "\n- Ho va ten: " << person.Name << endl;
@@ -91,10 +88,27 @@ void InThongTinNguoi(const PERSON &person)
     // Tính tuổi
     int yearOfBirth, monthOfBirth, dayOfBirth;
     sscanf(person.DateOfBirth.c_str(), "%d/%d/%d", &dayOfBirth, &monthOfBirth, &yearOfBirth);
-    time_t now = time(0);
-    tm *ltm = localtime(&now);
-    int currentYear = 1900 + ltm->tm_year;
-    int age = currentYear - yearOfBirth;
+
+    int age;
+    if (person.DateOfDeath.empty())
+    { // Trường hợp còn sống
+        time_t now = time(0);
+        tm *ltm = localtime(&now);
+        int currentYear = 1900 + ltm->tm_year;
+        age = currentYear - yearOfBirth;
+    }
+    else
+    { // Trường hợp đã mất
+        int yearOfDeath, monthOfDeath, dayOfDeath;
+        sscanf(person.DateOfDeath.c_str(), "%d/%d/%d", &dayOfDeath, &monthOfDeath, &yearOfDeath);
+        age = yearOfDeath - yearOfBirth;
+
+        // Xử lý trường hợp tháng sinh sau tháng mất
+        if (monthOfBirth > monthOfDeath || (monthOfBirth == monthOfDeath && dayOfBirth > dayOfDeath))
+        {
+            age--;
+        }
+    }
 
     cout << "- Tuoi: " << age << endl;
 
@@ -131,27 +145,35 @@ Node *TimKiemNguoi(Node *root, const string &name, int &level)
     {
         return NULL;
     }
+
     if (root->data.Name == name)
     {
         return root;
     }
 
-    int nextLevel = level + 1;
-    Node *found = TimKiemNguoi(root->leftChild, name, nextLevel);
+    // Tìm kiếm trong cây con trái
+    Node *found = TimKiemNguoi(root->leftChild, name, level);
     if (found != NULL)
     {
-        level = nextLevel;
+        level++; // Tăng level nếu tìm thấy trong cây con trái
         return found;
     }
 
-    nextLevel = level + 1;
-    return TimKiemNguoi(root->rightChild, name, nextLevel);
+    // Tìm kiếm trong cây con phải
+    found = TimKiemNguoi(root->rightChild, name, level);
+    if (found != NULL)
+    {
+        level++; // Tăng level nếu tìm thấy trong cây con phải
+        return found;
+    }
+
+    return NULL; // Không tìm thấy
 }
 
 // Hàm main
 int main()
 {
-    Node *familyTree = NULL; // Khởi tạo cây gia phả rỗng
+    Node *familyTree = NULL;
 
     int choice;
     do
