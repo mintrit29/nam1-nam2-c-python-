@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <stdio.h>
 #include <string>
@@ -21,15 +21,15 @@ struct PERSON
 struct Node
 {
     PERSON data;
-    Node *leftChild;
-    Node *rightChild;
+    Node* leftChild;
+    Node* rightChild;
 };
 
-void AddPerson(Node *&root, PERSON newPerson, string parentName)
+void AddPerson(Node*& root, PERSON newPerson, string parentName)
 {
     if (root == NULL)
     {
-        root = new Node{newPerson, NULL, NULL};
+        root = new Node{ newPerson, NULL, NULL };
         return;
     }
 
@@ -37,11 +37,11 @@ void AddPerson(Node *&root, PERSON newPerson, string parentName)
     {
         if (root->leftChild == NULL)
         {
-            root->leftChild = new Node{newPerson, NULL, NULL};
+            root->leftChild = new Node{ newPerson, NULL, NULL };
         }
         else if (root->rightChild == NULL)
         {
-            root->rightChild = new Node{newPerson, NULL, NULL};
+            root->rightChild = new Node{ newPerson, NULL, NULL };
         }
         else
         {
@@ -80,7 +80,7 @@ PERSON NhapThongTinNguoi()
     return person;
 }
 
-void InThongTinNguoi(const PERSON &person)
+void InThongTinNguoi(const PERSON& person)
 {
     cout << "\n- Ho va ten: " << person.Name << endl;
     cout << "- Gioi tinh: " << person.Gender << endl;
@@ -95,7 +95,7 @@ void InThongTinNguoi(const PERSON &person)
     if (person.DateOfDeath.empty())
     { // Trường hợp còn sống
         time_t now = time(0);
-        tm *ltm = localtime(&now);
+        tm* ltm = localtime(&now);
         int currentYear = 1900 + ltm->tm_year;
         age = currentYear - yearOfBirth;
     }
@@ -126,7 +126,7 @@ void InThongTinNguoi(const PERSON &person)
 }
 
 // Hàm duyệt cây gia phả theo thứ tự NLR và in thông tin
-void PrintFamilyTree(Node *root, int level = 0)
+void PrintFamilyTree(Node* root, int level = 0)
 {
     if (root != NULL)
     {
@@ -141,7 +141,7 @@ void PrintFamilyTree(Node *root, int level = 0)
 }
 
 // Hàm tìm kiếm người trong cây gia phả
-Node *TimKiemNguoi(Node *root, const string &name, int &level)
+Node* TimKiemNguoi(Node* root, const string& name, int& level)
 {
     if (root == NULL)
     {
@@ -154,7 +154,7 @@ Node *TimKiemNguoi(Node *root, const string &name, int &level)
     }
 
     // Tìm kiếm trong cây con trái
-    Node *found = TimKiemNguoi(root->leftChild, name, level);
+    Node* found = TimKiemNguoi(root->leftChild, name, level);
     if (found != NULL)
     {
         level++; // Tăng level nếu tìm thấy trong cây con trái
@@ -172,7 +172,7 @@ Node *TimKiemNguoi(Node *root, const string &name, int &level)
     return NULL; // Không tìm thấy
 }
 
-int CalculateAge(const string &dateOfBirth, const string &currentDate)
+int CalculateAge(const string& dateOfBirth, const string& currentDate)
 {
     int birthDay, birthMonth, birthYear;
     int currentDay, currentMonth, currentYear;
@@ -188,7 +188,7 @@ int CalculateAge(const string &dateOfBirth, const string &currentDate)
     return age;
 }
 
-int TongSoTuoi(Node *root, const string &currentDate)
+int TongSoTuoi(Node* root, const string& currentDate)
 {
     if (root == NULL)
     {
@@ -204,7 +204,7 @@ int TongSoTuoi(Node *root, const string &currentDate)
     return totalAge;
 }
 
-void InThanhVienChuaCoCon(Node *root)
+void InThanhVienChuaCoCon(Node* root)
 {
     if (root == NULL)
     {
@@ -219,7 +219,7 @@ void InThanhVienChuaCoCon(Node *root)
 }
 
 // cau6
-void InThanhVienThuN(Node *root, int N, int currentLevel = 1)
+void InThanhVienThuN(Node* root, int N, int currentLevel = 1)
 {
     if (root != NULL)
     {
@@ -227,78 +227,84 @@ void InThanhVienThuN(Node *root, int N, int currentLevel = 1)
         {
             cout << " - " << root->data.Name << endl;
         }
-        // Duyệt đệ quy sang trái và phải, tăng level lên 1
         InThanhVienThuN(root->leftChild, N, currentLevel + 1);
         InThanhVienThuN(root->rightChild, N, currentLevel + 1);
     }
 }
 
 // cau7
-bool CompareDates(const string &date1, const string &date2)
+bool CompareDates(const string& date1, const string& date2)
 {
-    // Extract year from both dates
     int year1 = stoi(date1.substr(6));
     int year2 = stoi(date2.substr(6));
 
-    // Compare years first
     if (year1 != year2)
     {
-        return year1 > year2; // Older year first (reverse comparison)
+        return year1 > year2;
     }
     else
     {
-        // If years are the same, compare months
         int month1 = stoi(date1.substr(3, 2));
         int month2 = stoi(date2.substr(3, 2));
         if (month1 != month2)
         {
-            return month1 > month2; // Older month first (reverse comparison)
+            return month1 > month2;
         }
         else
         {
-            // If years and months are the same, compare days
             int day1 = stoi(date1.substr(0, 2));
             int day2 = stoi(date2.substr(0, 2));
-            return day1 > day2; // Older day first (reverse comparison)
+            return day1 > day2;
         }
     }
 }
-void PrintAliveMembersSortedByAge(Node *root)
+
+void CollectAliveMembers(Node* root, vector<PERSON>& aliveMembers)
+{
+    if (root != NULL)
+    {
+        if (root->data.DateOfDeath.empty())
+        {
+            aliveMembers.push_back(root->data);
+        }
+        CollectAliveMembers(root->leftChild, aliveMembers);
+        CollectAliveMembers(root->rightChild, aliveMembers);
+    }
+}
+
+void SortAliveMembersByAge(vector<PERSON>& aliveMembers)
+{
+    for (int i = 1; i < aliveMembers.size(); i++)
+    {
+        PERSON key = aliveMembers[i];
+        int j = i - 1;
+
+        while (j >= 0 && CompareDates(aliveMembers[j].DateOfBirth, key.DateOfBirth))
+        {
+            aliveMembers[j + 1] = aliveMembers[j];
+            j = j - 1;
+        }
+        aliveMembers[j + 1] = key;
+    }
+}
+
+void PrintAliveMembersSortedByAge(Node* root)
 {
     if (root == NULL)
     {
         return;
     }
-    // Duyệt cây gia phả để lấy thông tin các thành viên còn sống
+
     vector<PERSON> aliveMembers;
-    if (root->data.DateOfDeath.empty())
-    {
-        aliveMembers.push_back(root->data);
-    }
-    PrintAliveMembersSortedByAge(root->leftChild);
-    PrintAliveMembersSortedByAge(root->rightChild);
+    CollectAliveMembers(root, aliveMembers);
+    SortAliveMembersByAge(aliveMembers);
 
-    // Sắp xếp danh sách thành viên theo tuổi (từ lớn đến nhỏ) bằng bubble sort
-    for (int i = 0; i > aliveMembers.size() - 1; ++i)
-    {
-        for (int j = 0; j > aliveMembers.size() - i - 1; ++j)
-        {
-            // So sánh ngày sinh của hai thành viên
-            if (CompareDates(aliveMembers[j].DateOfBirth, aliveMembers[j + 1].DateOfBirth))
-            {
-                // Hoán đổi hai thành viên nếu cần
-                swap(aliveMembers[j], aliveMembers[j + 1]);
-            }
-        }
-    }
-
-    // In danh sách thành viên còn sống theo thứ tự tuổi
-    for (const auto &person : aliveMembers)
+    for (const auto& person : aliveMembers)
     {
         InThongTinNguoi(person);
     }
 }
-void DuyetCayNLR(Node *root)
+void DuyetCayNLR(Node* root)
 {
     if (root != NULL)
     {
@@ -308,7 +314,7 @@ void DuyetCayNLR(Node *root)
     }
 }
 
-Node *TimKiemNguoi(Node *root, const string &name)
+Node* TimKiemNguoi(Node* root, const string& name)
 {
     if (root == NULL)
     {
@@ -318,7 +324,7 @@ Node *TimKiemNguoi(Node *root, const string &name)
     {
         return root;
     }
-    Node *found = TimKiemNguoi(root->leftChild, name);
+    Node* found = TimKiemNguoi(root->leftChild, name);
     if (found != NULL)
     {
         return found;
@@ -326,7 +332,7 @@ Node *TimKiemNguoi(Node *root, const string &name)
     return TimKiemNguoi(root->rightChild, name);
 }
 
-void ThongKeGioiTinh(Node *root, int &maleCount, int &femaleCount)
+void ThongKeGioiTinh(Node* root, int& maleCount, int& femaleCount)
 {
     if (root != NULL)
     {
@@ -343,7 +349,7 @@ void ThongKeGioiTinh(Node *root, int &maleCount, int &femaleCount)
     }
 }
 
-void ThongKeNgheNghiep(Node *root, unordered_map<string, int> &jobCount)
+void ThongKeNgheNghiep(Node* root, unordered_map<string, int>& jobCount)
 {
     if (root != NULL)
     {
@@ -353,12 +359,12 @@ void ThongKeNgheNghiep(Node *root, unordered_map<string, int> &jobCount)
     }
 }
 
-string TimNgheNhieuNhat(unordered_map<string, int> &jobCount)
+string TimNgheNhieuNhat(unordered_map<string, int>& jobCount)
 {
     string mostCommonJob = "";
     int maxCount = 0;
 
-    for (const auto &job : jobCount)
+    for (const auto& job : jobCount)
     {
         if (job.second > maxCount)
         {
@@ -370,7 +376,7 @@ string TimNgheNhieuNhat(unordered_map<string, int> &jobCount)
     return mostCommonJob;
 }
 
-void XoaCay(Node *&root)
+void XoaCay(Node*& root)
 {
     if (root != NULL)
     {
@@ -382,7 +388,7 @@ void XoaCay(Node *&root)
 }
 
 // Hàm tìm kiếm người trong cây gia phả và trả về node cha
-Node *FindParentNode(Node *root, const string &name, Node *&parent)
+Node* FindParentNode(Node* root, const string& name, Node*& parent)
 {
     if (root == NULL)
     {
@@ -395,7 +401,7 @@ Node *FindParentNode(Node *root, const string &name, Node *&parent)
     }
 
     // Tìm kiếm trong cây con trái
-    Node *found = FindParentNode(root->leftChild, name, parent);
+    Node* found = FindParentNode(root->leftChild, name, parent);
     if (found != NULL)
     {
         return found; // Tìm thấy trong cây con trái, không cần tìm kiếm bên phải
@@ -409,51 +415,45 @@ Node *FindParentNode(Node *root, const string &name, Node *&parent)
     }
 
     parent = root; // Cập nhật node cha nếu không tìm thấy trong con cháu
-    return NULL;   // Không tìm thấy
+    return NULL; // Không tìm thấy
 }
 
-void XoaThanhVien(Node *&root, const string &nameToDelete)
+void XoaThanhVien(Node*& root, const string& nameToDelete)
 {
-    if (root == NULL)
-    {
+    if (root == NULL) {
         return; // Base case: empty tree
     }
 
     // Search for the person and its parent
-    Node *parent = NULL;
-    Node *current = FindParentNode(root, nameToDelete, parent);
+    Node* parent = NULL;
+    Node* current = FindParentNode(root, nameToDelete, parent);
 
-    if (current != NULL)
-    {
+    if (current != NULL) {
         // Delete entire subtree rooted at 'current' (including descendants)
-        if (parent != NULL)
-        {
-            if (parent->leftChild == current)
-            {
+        if (parent != NULL) {
+            if (parent->leftChild == current) {
                 parent->leftChild = NULL;
             }
-            else if (parent->rightChild == current)
-            {
+            else if (parent->rightChild == current) {
                 parent->rightChild = NULL;
             }
         }
-        else
-        {
+        else {
             root = NULL; // If deleting root
         }
         XoaCay(current);
         cout << "Da xoa thanh vien " << nameToDelete << " va tat ca con chau." << endl;
     }
-    else
-    {
+    else {
         cout << "Khong tim thay thanh vien can xoa." << endl;
     }
 }
 
+
 // Hàm main
 int main()
 {
-    Node *familyTree = NULL;
+    Node* familyTree = NULL;
 
     int choice;
     do
@@ -516,7 +516,7 @@ int main()
             cout << "Nhap ten nguoi can tim: ";
             getline(cin >> ws, searchName);
             int searchLevel = 0;
-            Node *found = TimKiemNguoi(familyTree, searchName, searchLevel);
+            Node* found = TimKiemNguoi(familyTree, searchName, searchLevel);
             if (found != NULL)
             {
                 InThongTinNguoi(found->data);
@@ -576,7 +576,7 @@ int main()
             unordered_map<string, int> jobCount;
             ThongKeNgheNghiep(familyTree, jobCount);
             cout << "Thong ke nghe nghiep cua cac thanh vien:\n";
-            for (const auto &job : jobCount)
+            for (const auto& job : jobCount)
             {
                 cout << "- " << job.first << ": " << job.second << " thanh vien\n";
             }
@@ -603,6 +603,7 @@ int main()
             break;
         }
     } while (choice != 0);
+
 
     XoaCay(familyTree);
     return 0;
