@@ -1,5 +1,10 @@
 #include <iostream>
 #include <stdio.h>
+#include <string>
+#include <ctime>
+#include <sstream>
+#include <vector>
+
 using namespace std;
 
 struct PERSON
@@ -41,11 +46,10 @@ void AddPerson(Node *&root, PERSON newPerson, string parentName)
         {
             cout << "Parent already has two children." << endl;
         }
-        return; // Dừng đệ quy sau khi thêm thành công
+        return;
     }
     else
     {
-        // Chỉ đệ quy nếu chưa tìm thấy cha mẹ
         if (root->leftChild != NULL)
         {
             AddPerson(root->leftChild, newPerson, parentName);
@@ -57,7 +61,6 @@ void AddPerson(Node *&root, PERSON newPerson, string parentName)
     }
 }
 
-// Hàm nhập thông tin một người
 PERSON NhapThongTinNguoi()
 {
     PERSON person;
@@ -76,54 +79,102 @@ PERSON NhapThongTinNguoi()
     return person;
 }
 
-// Hàm in thông tin một người
 void InThongTinNguoi(const PERSON &person)
 {
     cout << "\n- Ho va ten: " << person.Name << endl;
     cout << "- Gioi tinh: " << person.Gender << endl;
     cout << "- Noi sinh: " << person.BirthPlace << endl;
     cout << "- Ngay sinh: " << person.DateOfBirth << endl;
+
+    // Tính tuổi
+    int yearOfBirth, monthOfBirth, dayOfBirth;
+    sscanf(person.DateOfBirth.c_str(), "%d/%d/%d", &dayOfBirth, &monthOfBirth, &yearOfBirth);
+
+    int age;
+    if (person.DateOfDeath.empty())
+    { // Trường hợp còn sống
+        time_t now = time(0);
+        tm *ltm = localtime(&now);
+        int currentYear = 1900 + ltm->tm_year;
+        age = currentYear - yearOfBirth;
+    }
+    else
+    { // Trường hợp đã mất
+        int yearOfDeath, monthOfDeath, dayOfDeath;
+        sscanf(person.DateOfDeath.c_str(), "%d/%d/%d", &dayOfDeath, &monthOfDeath, &yearOfDeath);
+        age = yearOfDeath - yearOfBirth;
+
+        // Xử lý trường hợp tháng sinh sau tháng mất
+        if (monthOfBirth > monthOfDeath || (monthOfBirth == monthOfDeath && dayOfBirth > dayOfDeath))
+        {
+            age--;
+        }
+    }
+
+    cout << "- Tuoi: " << age << endl;
+
     if (!person.DateOfDeath.empty())
     {
-        cout << "- Ngay mat: " << person.DateOfDeath << endl;
+        cout << "- Tinh trang: Da mat" << endl;
+    }
+    else
+    {
+        cout << "- Tinh trang: Con song" << endl;
     }
     cout << "- Nghe nghiep: " << person.Job << endl;
 }
 
-// Hàm duyệt cây theo thứ tự NLR để in gia phả
-void DuyetCayNLR(Node *root)
+// Hàm duyệt cây gia phả theo thứ tự NLR và in thông tin
+void PrintFamilyTree(Node *root, int level = 0)
 {
     if (root != NULL)
     {
+        for (int i = 0; i < level; i++)
+        {
+            cout << "  ";
+        }
         InThongTinNguoi(root->data);
-        DuyetCayNLR(root->leftChild);
-        DuyetCayNLR(root->rightChild);
+        PrintFamilyTree(root->leftChild, level + 1);
+        PrintFamilyTree(root->rightChild, level + 1);
     }
 }
 
-// Hàm tìm kiếm thông tin một người trong cây
-Node *TimKiemNguoi(Node *root, const string &name)
+// Hàm tìm kiếm người trong cây gia phả
+Node *TimKiemNguoi(Node *root, const string &name, int &level)
 {
     if (root == NULL)
     {
         return NULL;
     }
+
     if (root->data.Name == name)
     {
         return root;
     }
-    Node *found = TimKiemNguoi(root->leftChild, name);
+
+    // Tìm kiếm trong cây con trái
+    Node *found = TimKiemNguoi(root->leftChild, name, level);
     if (found != NULL)
     {
+        level++; // Tăng level nếu tìm thấy trong cây con trái
         return found;
     }
-    return TimKiemNguoi(root->rightChild, name);
+
+    // Tìm kiếm trong cây con phải
+    found = TimKiemNguoi(root->rightChild, name, level);
+    if (found != NULL)
+    {
+        level++; // Tăng level nếu tìm thấy trong cây con phải
+        return found;
+    }
+
+    return NULL; // Không tìm thấy
 }
 
-// Hàm main để quản lý cây gia phả
+// Hàm main
 int main()
 {
-    Node *familyTree = NULL; // Khởi tạo cây gia phả rỗng
+    Node *familyTree = NULL;
 
     int choice;
     do
@@ -143,31 +194,29 @@ int main()
             PERSON newPerson = NhapThongTinNguoi();
             string parentName = "";
 
-            // Xử lý nhập tên cha mẹ
             cout << "Nhap ten cha/me (nhap 'q' de bo qua neu la goc): ";
-            getline(cin >> ws, parentName); // Đọc toàn bộ dòng
+            getline(cin >> ws, parentName);
 
-            // Kiểm tra nếu parentName là "q"
             if (parentName != "q")
             {
-                // Kiểm tra xem cha mẹ có tồn tại không
-                while (TimKiemNguoi(familyTree, parentName) == NULL)
+                int parentLevel = 0;
+                while (TimKiemNguoi(familyTree, parentName, parentLevel) == NULL)
                 {
                     cout << "Khong tim thay cha/me. Vui long nhap lai (hoac 'q' de bo qua): ";
                     getline(cin >> ws, parentName);
                     if (parentName == "q")
                     {
-                        break; // Bỏ qua nếu người dùng nhập "q"
+                        break;
                     }
                 }
             }
             else
             {
-                parentName = ""; // Đặt parentName thành rỗng nếu là gốc
+                parentName = "";
             }
 
-            // Xử lý tên trùng lặp
-            while (TimKiemNguoi(familyTree, newPerson.Name) != NULL)
+            int newPersonLevel = 0;
+            while (TimKiemNguoi(familyTree, newPerson.Name, newPersonLevel) != NULL)
             {
                 cout << "Ten da ton tai. Vui long nhap lai ho va ten: ";
                 getline(cin >> ws, newPerson.Name);
@@ -181,10 +230,12 @@ int main()
             string searchName;
             cout << "Nhap ten nguoi can tim: ";
             getline(cin >> ws, searchName);
-            Node *found = TimKiemNguoi(familyTree, searchName);
+            int searchLevel = 0;
+            Node *found = TimKiemNguoi(familyTree, searchName, searchLevel);
             if (found != NULL)
             {
                 InThongTinNguoi(found->data);
+                cout << "- Thuoc doi thu: " << searchLevel + 1 << endl;
             }
             else
             {
@@ -193,7 +244,7 @@ int main()
             break;
         }
         case 3:
-            DuyetCayNLR(familyTree);
+            PrintFamilyTree(familyTree);
             break;
         case 0:
             cout << "Tam biet!" << endl;
