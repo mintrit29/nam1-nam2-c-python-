@@ -2,5 +2,6 @@
     "files.associations": {
         "ostream": "cpp"
     },
-    "python.REPL.enableREPLSmartSend": false
+    "python.REPL.enableREPLSmartSend": false,
+    "liveServer.settings.multiRootWorkspaceName": "CODE"
 }
