@@ -112,63 +112,78 @@
             sắp
             tới. Chúc chuyến đi của bạn thuận lợi và có thật nhiều kỷ niệm đẹp nha.</p>
         <h2 style="text-align: center; color: black" >Hãy Đăng Ký Tour du lịch đến Thanh Hóa ngay hôm nay</h2>
-        <p>Email:<br> <input type="email" placeholder="Nhập vào email của bạn"/></p>
-        <p>Password:<br> <input type="password" placeholder="Nhập vào mật khẩu của bạn"/></p>
-        <p>
-            <label>Age:<br> </label>
-            <input type="number" min="1" max="99" name="age"/>
-        </p>
-        <p>Tel:<br> <input type="tel" placeholder="Nhập vào số điện thoại của bạn" /></p>
-        <p>City:<br> <input type="text" name="city" list="cities" placeholder="Tìm thành phố của bạn"/>
-            <datalist id="cities">
-                <option>HCM</option>
-                <option>Hanoi</option>
-                <option>ThanhHoa</option>
-            </datalist>
-        </p>
-        <p>Ticket:
-            <select name="choices">
-                <option>BinhThuong</option>
-                <option>ThuongGia</option>
-            </select>
-        </p>
-        <p>Breakfast: 
-            <input type="radio" name="yesno"/> Co
-            <input type="radio" name="yesno" /> Khong
-        </p>
-        <p>
-            <label>I accept the software license</label>
-            <input type="checkbox" name="accept"/>
-        </p>
-        <p>
-            <label>Where would you like to visit?</label><br/>
-            <input type="checkbox" name="visit" value="puluong">PuLuong<br/>
-            <input type="checkbox" name="visit" value="samson">SamSon<br/>
-            <input type="checkbox" name="visit" value="cathan">CaThan
-        </p>
-        <div>
-            <input type="submit" value="Gui form"/>
-            <input type="reset" value="Xoa form"/>
-        </div>
-        <div>
-            <button>
-                <a href="email.html">
-                    <img style="display: inline; margin: 0; border-radius: 0; width: 20px; height: 10px; border: 0;" src="images/email.png">
-                    Email
-                </a>
-            </button>
-        </div>
-        <div style="margin-top: 10px;">
-            <form method="post" enctype="multipart/form-data">
-                <label>Upload Your ID Card</label><br/>
-                <input type="file" name="photo">
-            </form>
-        </div>
-        <div style="margin-top: 10px;">Book Date: <br/>
-            <label>
-                <input type="date"/>
-            </label>
-        </div>
+        <table>
+            <tr>
+                <td>
+                    <p>Email:<br> <input type="email" placeholder="Nhập vào email của bạn" /></p>
+                    <p>Password:<br> <input type="password" placeholder="Nhập vào mật khẩu của bạn" /></p>
+                    <p>
+                        <label>Age:<br> </label>
+                        <input type="number" min="1" max="99" name="age" />
+                    </p>
+                    <p>Tel:<br> <input type="tel" placeholder="Nhập vào số điện thoại của bạn" /></p>
+                    <p>City:<br> <input type="text" name="city" list="cities" placeholder="Tìm thành phố của bạn" />
+                        <datalist id="cities">
+                            <option>HCM</option>
+                            <option>Hanoi</option>
+                            <option>ThanhHoa</option>
+                        </datalist>
+                    </p>
+                </td>
+            </tr>
+        </table>
+        <table>
+            <td>
+                <p>Ticket:
+                    <select name="choices">
+                        <option>BinhThuong</option>
+                        <option>ThuongGia</option>
+                    </select>
+                </p>
+                <p>Breakfast:
+                    <input type="radio" name="yesno" /> Co
+                    <input type="radio" name="yesno" /> Khong
+                </p>
+                <p>
+                    <label>I accept the software license</label>
+                    <input type="checkbox" name="accept" />
+                </p>
+                <p>
+                    <label>Where would you like to visit?</label><br />
+                    <input type="checkbox" name="visit" value="puluong">PuLuong<br />
+                    <input type="checkbox" name="visit" value="samson">SamSon<br />
+                    <input type="checkbox" name="visit" value="cathan">CaThan
+                </p>
+                <div>
+                    <input type="submit" value="Gui form" />
+                    <input type="reset" value="Xoa form" />
+                </div>
+            </td>
+        </table>
+        <table>
+            <td>
+                <div>
+                    <button>
+                        <a href="email.html">
+                            <img style="display: inline; margin: 0; border-radius: 0; width: 20px; height: 10px; border: 0;"
+                                src="images/email.png">
+                            Email
+                        </a>
+                    </button>
+                </div>
+                <div style="margin-top: 10px;">
+                    <form method="post" enctype="multipart/form-data">
+                        <label>Upload Your ID Card</label><br />
+                        <input type="file" name="photo">
+                    </form>
+                </div>
+                <div style="margin-top: 10px;">Book Date: <br />
+                    <label>
+                        <input type="date" />
+                    </label>
+                </div>
+            </td>
+        </table>
     </div>
     <footer>
         <a href="https://www.facebook.com/"><i class="fab fa-facebook"></i></a>
