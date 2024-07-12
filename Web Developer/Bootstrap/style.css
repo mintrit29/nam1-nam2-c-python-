@@ -1,4 +1,52 @@
 * {
     margin: 0px;
     padding: 0px;
+    border-radius: 0 !important;
+}
+.dropdown{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content{
+    display: none;
+    position: absolute;
+    z-index: 1;
+    list-style: none;
+    background-color: #f5f5f5;
+}
+.dropdown:hover .dropdown-content{
+    display: block;
+}
+/* list product */
+.list-product-title{
+    width: 100%;
+    text-transform: uppercase;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.list-product-subtitle{
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+/* product card */
+.card-product{
+    width: 100%;
+    margin-left: 5px;
+    margin-right: 5px;
+    overflow: hidden;
+    position: relative;
+}
+.del-price{
+    text-decoration: line-through;
+    color: red;
+}
+.new-price{
+    color: #f90;
+}
+.sale-sticky{
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    top: 5px;
 }
