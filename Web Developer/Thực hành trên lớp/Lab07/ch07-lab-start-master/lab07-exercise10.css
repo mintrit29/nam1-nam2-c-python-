@@ -23,13 +23,14 @@ header {
 }
 div#main {
    padding: 0.5em;
-
+   margin-left: 12em;
 }
 nav {
    color: white;
    background-color: #A9A9A9;
    padding: 0.5em;
-
+   width: 10em;
+   float: left;
 }
 footer {
    color: white;

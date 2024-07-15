@@ -18,7 +18,7 @@ figure {
    padding: 10px;
    width: 200px;
    margin: 10px;
-
+   position: relative;
 }
 figcaption {
    width: 100px;
@@ -28,8 +28,14 @@ figcaption {
    width: 140px;
    height: 20px;
    padding: 5px;
-
-   
+   position: absolute;
+   top: 130px;
+   left: 10px;   
+}
+.overlay {
+   position: absolute;
+   top: 10px;
+   left: 10px;
 }
 
 
