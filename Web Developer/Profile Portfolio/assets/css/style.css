@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --primary-color: #ff651c;
+    --dark-color: #373737;
+}
+
+body {
+    font-family: "Jost", sans-serif;
+    font-weight: 400;
+    color: #555;
+}
+
+img {
+    max-width: 100%;
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #CB612F;
+    text-decoration: none;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.text-dark {
+    color: var(--primary-color);
+}
+
+/* Header */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 11;
+    background: transparent;
+    transition: 0.3s background;
+}
+
+.main-header navbar {
+    padding: 15px 0;
+}
+
+.main-header .navbar-nav > li {
+    padding: 0 10px;
+}
+
+.main-header .navbar-nav > li > .nav-link {
+    padding: 0 5px;
+    line-height: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 14px;
+    color: var(--dark-color);
+    letter-spacing: 3px;
+    position: relative;
+}
+
+.main-header .navbar-nav>li>.nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    left: auto;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: ease all 0.3s;
+}
+
+.main-header .navbar-nav>li>.nav-link:hover {
+    color: var(--primary-color);
+}
+
+.main-header .navbar-nav>li>.nav-link:hover::after {
+    left: 0;
+    right: auto;
+    width: 100%;
+}
+
+@media (max-width:991px) {
+    .main-header .navbar-nav > li + li {
+        border-top: 1px solid rgba(55, 55, 55, 0.1);
+    }
+
+    .main-header .navbar-nav > li .nav-link {
+        line-height: 50px;
+    }
+    .main-header .navbar-nav>li .nav-link:after {
+        display: none;
+    }
+    .main-header .navbar-toggler {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        padding: 4px 9px;
+        outline: none;
+        box-shadow: none;
+    }
+    .main-header .navbar-toggler span {
+        width: 25px;
+        height: 2px;
+        background:var(--dark-color);
+        margin: 4px 0;
+        transition: 0.3s;
+    }
+}
