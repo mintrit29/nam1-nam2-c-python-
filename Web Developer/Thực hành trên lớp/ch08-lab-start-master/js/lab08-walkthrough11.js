@@ -18,3 +18,17 @@ countries.push(new Country("Spain", "ES", "Madrid", 46505963));
 countries.push(new Country("United Kingdom", "GB", "London", 62348447));
 
 /* your code goes here */
+
+for	(i	=	0;	i	<	countries.length;	i++)	{
+				var	c	=	countries[i];
+				document.write("<div	class='box'>");
+				document.write("<img	src='flags/"	+	c.iso	+	".png'	class='boxImg'>");
+				for	(var	propertyName	in	c)	{
+								document.write("<strong>");
+								document.write(propertyName	+	":	");
+								document.write("</strong>");
+								document.write(c[propertyName]);	
+								document.write("<br>");
+				}
+				document.write("</div>");
+}
