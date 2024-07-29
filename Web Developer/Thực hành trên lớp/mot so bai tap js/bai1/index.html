@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PHIẾU ĐĂNG KÝ</h1>
+    <div>Họ và tên: <input type="text"/>(*)</div>
+    <div>Địa chỉ: <input type="text" /></div>
+    <div>Email: <input type="email" />(*)</div>
+    <div>Giới tính: <input type="text" /></div>
+    <div>Giới tính:
+        <input type="radio" name="namnu" /> Nam
+        <input type="radio" name="namnu" /> Nữ
+    </div>
+    <div>Tuổi: <input type="text" />(*)</div>
+    <div>
+        <label>Sở thích: </label>
+        <input type="checkbox" name="sothich" value="thethao">Thể thao<br />
+        <input type="checkbox" name="sothich" value="vanhoc">Văn học<br />
+        <input type="checkbox" name="sothich" value="congnghe">Công nghệ thông tin<br />
+        <input type="checkbox" name="sothich" value="lichsu">Lịch sử<br />
+        <input type="checkbox" name="sothich" value="game">Game<br />
+    </div>
+    <div>Chuyên ngành:
+        <select name="choices">
+            <option>Công nghệ Web</option>
+            <option>...</option>
+        </select>
+    </div>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+        <label for="fileUpload">Gửi hình:</label>
+            <input type="text" id="fileText" readonly>
+            <input type="file" name="fileToUpload" id="fileUpload" accept="image/*"
+                onchange="document.getElementById('fileText').value = this.files[0].name;">
+    </form>
+    <script src="ScriptTest.js"></script>
+</body>
+</html>

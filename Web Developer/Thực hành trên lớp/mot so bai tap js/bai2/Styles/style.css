@@ -1,0 +1,21 @@
+#wrapper {
+    width: 800px;
+    margin: 0 auto
+}
+
+#full {
+    display: none
+}
+
+a {
+    color: green;
+    padding-left: 15px
+}
+
+a.open {
+    background: url(../Images/open.gif) no-repeat left center
+}
+
+a.close {
+    background: url(../Images/close.gif) no-repeat left center
+}
