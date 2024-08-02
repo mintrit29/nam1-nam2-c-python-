@@ -6,13 +6,6 @@ body {
     margin: 0;
 }
 
-.form-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-}
-
 .checkbox-container {
     position: relative;
     padding-left: 70px;

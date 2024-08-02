@@ -1,56 +1,60 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <div class="form-container">
         <h1>PHIẾU ĐĂNG KÝ</h1>
-        <div>Họ và tên: <input type="text"/>(*)</div>
-        <div>Địa chỉ: <input type="text" /></div>
-        <div>Email: <input type="email" />(*)</div>
-        <div>Giới tính: <input type="text" /></div>
-        <div>Giới tính:
-            <input type="radio" name="namnu" /> Nam
-            <input type="radio" name="namnu" /> Nữ
-        </div>
-        <div>Tuổi: <input type="text" />(*)</div>
-        <div class="checkbox-container">
-            <label>Sở thích: </label>
-            <div>
-                <div class="checkbox-item"><input type="checkbox" name="sothich" value="thethao">Thể thao</div>
-                <div class="checkbox-item"><input type="checkbox" name="sothich" value="vanhoc">Văn học</div>
-                <div class="checkbox-item"><input type="checkbox" name="sothich" value="congnghe">Công nghệ thông tin</div>
-                <div class="checkbox-item"><input type="checkbox" name="sothich" value="lichsu">Lịch sử</div>
-                <div class="checkbox-item"><input type="checkbox" name="sothich" value="game">Game</div>
+        <form id="registrationForm">
+            <div>Họ và tên: <input type="text" name="name" />(*)</div><br>
+            <div>Địa chỉ: <input type="text" name="address" /></div><br>
+            <div>Email: <input type="email" name="email" />(*)</div><br>
+            <div>Giới tính: <input type="text" name="gender" /></div><br>
+            <div>Giới tính:
+                <input type="radio" name="gender" value="nam" /> Nam
+                <input type="radio" name="gender" value="nu" /> Nữ
+            </div><br>
+            <div>Tuổi: <input type="text" name="age" />(*)</div><br>
+            <div class="checkbox-container">
+                <label>Sở thích: </label>
+                <div>
+                    <div class="checkbox-item"><input type="checkbox" name="sothich" value="thethao">Thể thao</div>
+                    <div class="checkbox-item"><input type="checkbox" name="sothich" value="vanhoc">Văn học</div>
+                    <div class="checkbox-item"><input type="checkbox" name="sothich" value="congnghe">Công nghệ thông
+                        tin</div>
+                    <div class="checkbox-item"><input type="checkbox" name="sothich" value="lichsu">Lịch sử</div>
+                    <div class="checkbox-item"><input type="checkbox" name="sothich" value="game">Game</div>
+                </div><br>
             </div>
-        </div>
-        <div>Chuyên ngành:
-            <select name="choices">
-                <option>Công nghệ Web</option>
-                <option>...</option>
-            </select>
-        </div>
-        <div>
-            <form action="upload.php" method="post" enctype="multipart/form-data">
+            <div>Chuyên ngành:
+                <select name="choices">
+                    <option>Công nghệ Web</option>
+                    <option>...</option>
+                </select>
+            </div><br>
+            <div>
                 <label for="fileUpload">Gửi hình:</label>
                 <input type="text" id="fileText" readonly>
                 <input type="file" name="fileToUpload" id="fileUpload" accept="image/*"
                     onchange="document.getElementById('fileText').value = this.files[0].name;">
-            </form>
-        </div>
-        <div>
-            <label for="message">Yêu Cầu:</label><br>
-            <textarea id="message" name="message" rows="4" cols="50"></textarea>
-        </div>
-        <div class="buttons">
-            <input type="submit" value="Gửi thông tin">
-            <input type="reset" value="Nhập lại">
-        </div>
+            </div><br>
+            <div>
+                <label for="message">Yêu Cầu:</label><br>
+                <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            </div>
+            <div class="buttons">
+                <input type="submit" value="Gửi thông tin">
+                <input type="reset" value="Nhập lại">
+            </div>
+        </form>
     </div>
     <script src="ScriptTest.js"></script>
 </body>
+
 </html>
