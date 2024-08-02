@@ -1,13 +1,14 @@
 function show_hide() {
-    if (document.getElementById("full").style.display != 'block') {
-        document.getElementById("full").style.display = 'block';
-        document.getElementById("1ink").innerHTML = 'Rút gọn';
-        document.getElementById("1ink").className = 'close';
-    }
-    else {
-        document.getElementById("full").style.display = 'none';
-        document.getElementById("link").innerHTML = 'Xem đầy đủ';
-        document.getElementById("link").className = 'open';
+    var fullDiv = document.getElementById("full");
+    var link = document.getElementById("link");
+    if (fullDiv.style.display != 'block') {
+        fullDiv.style.display = 'block';
+        link.innerHTML = 'Rút gọn';
+        link.className = 'close';
+    } else {
+        fullDiv.style.display = 'none';
+        link.innerHTML = 'Xem đầy đủ';
+        link.className = 'open';
     }
     return false;
 }
