@@ -1,0 +1,27 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.checkbox-container {
+    position: relative;
+    padding-left: 70px;
+    /* Đảm bảo có đủ khoảng trống cho label */
+}
+
+.checkbox-container label {
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+

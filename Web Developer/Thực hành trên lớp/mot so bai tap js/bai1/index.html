@@ -7,36 +7,50 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>PHIẾU ĐĂNG KÝ</h1>
-    <div>Họ và tên: <input type="text"/>(*)</div>
-    <div>Địa chỉ: <input type="text" /></div>
-    <div>Email: <input type="email" />(*)</div>
-    <div>Giới tính: <input type="text" /></div>
-    <div>Giới tính:
-        <input type="radio" name="namnu" /> Nam
-        <input type="radio" name="namnu" /> Nữ
+    <div class="form-container">
+        <h1>PHIẾU ĐĂNG KÝ</h1>
+        <div>Họ và tên: <input type="text"/>(*)</div>
+        <div>Địa chỉ: <input type="text" /></div>
+        <div>Email: <input type="email" />(*)</div>
+        <div>Giới tính: <input type="text" /></div>
+        <div>Giới tính:
+            <input type="radio" name="namnu" /> Nam
+            <input type="radio" name="namnu" /> Nữ
+        </div>
+        <div>Tuổi: <input type="text" />(*)</div>
+        <div class="checkbox-container">
+            <label>Sở thích: </label>
+            <div>
+                <div class="checkbox-item"><input type="checkbox" name="sothich" value="thethao">Thể thao</div>
+                <div class="checkbox-item"><input type="checkbox" name="sothich" value="vanhoc">Văn học</div>
+                <div class="checkbox-item"><input type="checkbox" name="sothich" value="congnghe">Công nghệ thông tin</div>
+                <div class="checkbox-item"><input type="checkbox" name="sothich" value="lichsu">Lịch sử</div>
+                <div class="checkbox-item"><input type="checkbox" name="sothich" value="game">Game</div>
+            </div>
+        </div>
+        <div>Chuyên ngành:
+            <select name="choices">
+                <option>Công nghệ Web</option>
+                <option>...</option>
+            </select>
+        </div>
+        <div>
+            <form action="upload.php" method="post" enctype="multipart/form-data">
+                <label for="fileUpload">Gửi hình:</label>
+                <input type="text" id="fileText" readonly>
+                <input type="file" name="fileToUpload" id="fileUpload" accept="image/*"
+                    onchange="document.getElementById('fileText').value = this.files[0].name;">
+            </form>
+        </div>
+        <div>
+            <label for="message">Yêu Cầu:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+        </div>
+        <div class="buttons">
+            <input type="submit" value="Gửi thông tin">
+            <input type="reset" value="Nhập lại">
+        </div>
     </div>
-    <div>Tuổi: <input type="text" />(*)</div>
-    <div>
-        <label>Sở thích: </label>
-        <input type="checkbox" name="sothich" value="thethao">Thể thao<br />
-        <input type="checkbox" name="sothich" value="vanhoc">Văn học<br />
-        <input type="checkbox" name="sothich" value="congnghe">Công nghệ thông tin<br />
-        <input type="checkbox" name="sothich" value="lichsu">Lịch sử<br />
-        <input type="checkbox" name="sothich" value="game">Game<br />
-    </div>
-    <div>Chuyên ngành:
-        <select name="choices">
-            <option>Công nghệ Web</option>
-            <option>...</option>
-        </select>
-    </div>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
-        <label for="fileUpload">Gửi hình:</label>
-            <input type="text" id="fileText" readonly>
-            <input type="file" name="fileToUpload" id="fileUpload" accept="image/*"
-                onchange="document.getElementById('fileText').value = this.files[0].name;">
-    </form>
     <script src="ScriptTest.js"></script>
 </body>
 </html>
