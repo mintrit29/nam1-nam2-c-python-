@@ -1,6 +1,5 @@
-var fullName = 'Tong Minh Triet'
+function concac() {
+    alert('Concac');
+}
 
-console.log(fullName)
-setTimeout(function () {
-    
-})
+concac()
