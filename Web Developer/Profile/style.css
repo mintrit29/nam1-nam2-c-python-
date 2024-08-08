@@ -58,7 +58,7 @@ header img {
 nav {
     background-image: url(Images/baiyun-amidst-the-serene-blue-sky-page-border-background-word-template_7f1f5eaa56__1131_1600.avif);
     background-repeat: no-repeat;
-    height: 550px;
+    height: 600px;
     width: 25%;
     margin-top: 10px;
     align-self: flex-start;
@@ -88,11 +88,14 @@ nav a {
     line-height: 20px;
     padding: 10px;
     text-decoration: none;
-    margin-left: 30px;
-    margin-right: 30px;
+    margin-left: 45px;
+    margin-right: 45px;
+    margin-top: 5px;
 }
 
 nav a:hover {
     box-shadow: none;
     color:#6482AD;
+    margin-left: 30px;
+    margin-right: 30px;
 }
