@@ -1,0 +1,7 @@
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\bin\Debug\Tinhdiemtrungbinh.exe.config
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\bin\Debug\Tinhdiemtrungbinh.exe
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\bin\Debug\Tinhdiemtrungbinh.pdb
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\obj\Debug\Tinhdiemtrungbinh.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\obj\Debug\Tinhdiemtrungbinh.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\obj\Debug\Tinhdiemtrungbinh.exe
+D:\SCHOOL\CODE\C#\Tinhdiemtrungbinh\obj\Debug\Tinhdiemtrungbinh.pdb

@@ -1,0 +1,2 @@
+D:\SCHOOL\CODE\C#\Kethua01\obj\Debug\Kethua01.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Kethua01\obj\Debug\Kethua01.csproj.CoreCompileInputs.cache

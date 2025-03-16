@@ -1,0 +1,7 @@
+D:\SCHOOL\CODE\C#\Nhanvien\bin\Debug\Nhanvien.exe.config
+D:\SCHOOL\CODE\C#\Nhanvien\bin\Debug\Nhanvien.exe
+D:\SCHOOL\CODE\C#\Nhanvien\bin\Debug\Nhanvien.pdb
+D:\SCHOOL\CODE\C#\Nhanvien\obj\Debug\Nhanvien.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Nhanvien\obj\Debug\Nhanvien.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Nhanvien\obj\Debug\Nhanvien.exe
+D:\SCHOOL\CODE\C#\Nhanvien\obj\Debug\Nhanvien.pdb

@@ -1,0 +1,17 @@
+D:\SCHOOL\CODE\WinForm\DemoWinForm\bin\Debug\net8.0-windows\DemoWinForm.exe
+D:\SCHOOL\CODE\WinForm\DemoWinForm\bin\Debug\net8.0-windows\DemoWinForm.deps.json
+D:\SCHOOL\CODE\WinForm\DemoWinForm\bin\Debug\net8.0-windows\DemoWinForm.runtimeconfig.json
+D:\SCHOOL\CODE\WinForm\DemoWinForm\bin\Debug\net8.0-windows\DemoWinForm.dll
+D:\SCHOOL\CODE\WinForm\DemoWinForm\bin\Debug\net8.0-windows\DemoWinForm.pdb
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.Form1.resources
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.csproj.GenerateResource.cache
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.GeneratedMSBuildEditorConfig.editorconfig
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.AssemblyInfoInputs.cache
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.AssemblyInfo.cs
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.sourcelink.json
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.dll
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\refint\DemoWinForm.dll
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.pdb
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\DemoWinForm.genruntimeconfig.cache
+D:\SCHOOL\CODE\WinForm\DemoWinForm\obj\Debug\net8.0-windows\ref\DemoWinForm.dll

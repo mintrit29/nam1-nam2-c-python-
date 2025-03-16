@@ -1,0 +1,7 @@
+D:\SCHOOL\CODE\C#\Baitaptailop2\bin\Debug\Baitaptailop2.exe.config
+D:\SCHOOL\CODE\C#\Baitaptailop2\bin\Debug\Baitaptailop2.exe
+D:\SCHOOL\CODE\C#\Baitaptailop2\bin\Debug\Baitaptailop2.pdb
+D:\SCHOOL\CODE\C#\Baitaptailop2\obj\Debug\Baitaptailop2.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Baitaptailop2\obj\Debug\Baitaptailop2.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Baitaptailop2\obj\Debug\Baitaptailop2.exe
+D:\SCHOOL\CODE\C#\Baitaptailop2\obj\Debug\Baitaptailop2.pdb
