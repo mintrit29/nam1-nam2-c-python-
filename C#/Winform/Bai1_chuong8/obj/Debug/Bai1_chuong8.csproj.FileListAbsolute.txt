@@ -1,0 +1,10 @@
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\bin\Debug\Bai1_chuong8.exe.config
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\bin\Debug\Bai1_chuong8.exe
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\bin\Debug\Bai1_chuong8.pdb
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.Form1.resources
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.Properties.Resources.resources
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.csproj.GenerateResource.cache
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.exe
+D:\SCHOOL\CODE\C#\Winform\Bai1_chuong8\obj\Debug\Bai1_chuong8.pdb

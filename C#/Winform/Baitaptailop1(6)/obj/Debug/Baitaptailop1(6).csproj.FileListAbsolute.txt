@@ -1,0 +1,10 @@
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\bin\Debug\Baitaptailop1(6).exe.config
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\bin\Debug\Baitaptailop1(6).exe
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\bin\Debug\Baitaptailop1(6).pdb
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1(6).csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1_6_.Form1.resources
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1_6_.Properties.Resources.resources
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1(6).csproj.GenerateResource.cache
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1(6).csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1(6).exe
+D:\SCHOOL\CODE\C#\Winform\Baitaptailop1(6)\obj\Debug\Baitaptailop1(6).pdb

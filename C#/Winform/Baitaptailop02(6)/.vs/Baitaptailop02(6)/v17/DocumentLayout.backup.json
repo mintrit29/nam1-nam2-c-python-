@@ -1,0 +1,70 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|d:\\school\\code\\c#\\winform\\baitaptailop02(6)\\frmbaitap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|solutionrelative:frmbaitap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|d:\\school\\code\\c#\\winform\\baitaptailop02(6)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|d:\\school\\code\\c#\\winform\\baitaptailop02(6)\\frmbaitap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{92738A54-F78E-473E-8BD3-33AF6FD665FB}|Baitaptailop02(6).csproj|solutionrelative:frmbaitap2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T08:27:29.372Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "frmBaiTap2.cs",
+              "DocumentMoniker": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\frmBaiTap2.cs",
+              "RelativeDocumentMoniker": "frmBaiTap2.cs",
+              "ToolTip": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\frmBaiTap2.cs",
+              "RelativeToolTip": "frmBaiTap2.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T08:25:16.683Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmBaiTap2.cs [Design]",
+              "DocumentMoniker": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\frmBaiTap2.cs",
+              "RelativeDocumentMoniker": "frmBaiTap2.cs",
+              "ToolTip": "D:\\SCHOOL\\CODE\\C#\\Winform\\Baitaptailop02(6)\\frmBaiTap2.cs [Design]",
+              "RelativeToolTip": "frmBaiTap2.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T08:21:47.686Z",
+              "EditorCaption": " [Design]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

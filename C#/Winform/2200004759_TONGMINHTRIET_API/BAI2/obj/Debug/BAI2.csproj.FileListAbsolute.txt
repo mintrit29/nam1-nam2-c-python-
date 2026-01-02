@@ -1,0 +1,20 @@
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\ArrayCalculatorApp.Form1.resources
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.Properties.Resources.resources
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.csproj.GenerateResource.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\bin\Debug\BAI2.exe.config
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\bin\Debug\BAI2.exe
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\bin\Debug\BAI2.pdb
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.exe
+D:\SCHOOL\CODE\C#\Winform\2200004759_Tống Minh Triết\BAI2\obj\Debug\BAI2.pdb
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\bin\Debug\BAI2.exe.config
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\bin\Debug\BAI2.exe
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\bin\Debug\BAI2.pdb
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.csproj.AssemblyReference.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\ArrayCalculatorApp.Form1.resources
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.Properties.Resources.resources
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.csproj.GenerateResource.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.csproj.CoreCompileInputs.cache
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.exe
+D:\SCHOOL\CODE\C#\Winform\2200004759_TONGMINHTRIET_API\BAI2\obj\Debug\BAI2.pdb

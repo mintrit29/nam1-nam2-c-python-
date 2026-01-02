@@ -1,7 +1,0 @@
-D:\SCHOOL\CODE\WinForm\Demonhapten\bin\Debug\Demonhapten.exe.config
-D:\SCHOOL\CODE\WinForm\Demonhapten\bin\Debug\Demonhapten.exe
-D:\SCHOOL\CODE\WinForm\Demonhapten\bin\Debug\Demonhapten.pdb
-D:\SCHOOL\CODE\WinForm\Demonhapten\obj\Debug\Demonhapten.csproj.AssemblyReference.cache
-D:\SCHOOL\CODE\WinForm\Demonhapten\obj\Debug\Demonhapten.csproj.CoreCompileInputs.cache
-D:\SCHOOL\CODE\WinForm\Demonhapten\obj\Debug\Demonhapten.exe
-D:\SCHOOL\CODE\WinForm\Demonhapten\obj\Debug\Demonhapten.pdb
